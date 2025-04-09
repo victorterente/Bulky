@@ -27,19 +27,15 @@ namespace BulkyWebRazor.Pages.Categories
 
         }
 
-
         public IActionResult OnPost()
         {
             if (ModelState.IsValid)
             {
                 _db.Categories.Update(Category);  
                 _db.SaveChanges();
+                TempData["Success"] = (Category.Name + " Edited Succesfully");
                 return RedirectToPage("Index");
             }
-           
-            
-
-
             return Page();
         }
     }
