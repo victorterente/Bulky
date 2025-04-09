@@ -21,16 +21,22 @@ namespace BulkyWebRazor.Pages.Categories
         {
             if(id != 0 && id != null)
             {
-                var Category =  _db.Categories.Find(id);
+              Category =  _db.Categories.Find(id);
 
             }
 
 
         }
-        public IActionResult OnDelete()
+        public IActionResult OnPost()
         {
+            Category obj = _db.Categories.Find(Category.Id);
+            if(obj == null)
+            {
+                return NotFound();  
 
-            _db.Categories.Remove(Category);
+            }
+
+            _db.Categories.Remove(obj);
             _db.SaveChanges();
 
             return RedirectToPage("Index");

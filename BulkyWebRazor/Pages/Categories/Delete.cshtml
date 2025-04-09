@@ -1,4 +1,13 @@
 ﻿@page
 @model BulkyWebRazor.Pages.Categories.DeleteModel
 @{
+ <div><h2>Delete Category</h2></div>
+
+<form method="post">
+    <input type="hidden" asp-for="Category.Id" />
+    <p>Are you sure you want to delete <strong>@Model.Category.Name</strong>?</p>
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-page="/Categories/Index" class="btn btn-secondary">Cancel</a>
+</form>
 }

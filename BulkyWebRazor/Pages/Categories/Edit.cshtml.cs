@@ -10,16 +10,21 @@ namespace BulkyWebRazor.Pages.Categories
     {
         private readonly DbContextApplication _db;
 
-        public Category? Category { get; set; }
+        public Category Category { get; set; }
         public EditModel(DbContextApplication db)
         {
             _db = db;
         }
 
 
-        public void OnGet(int id)
+        public void OnGet(int? id)
         {
-            var Category = _db.Categories.Find(id);
+            if(id != null && id != 0)
+            {
+                 Category = _db.Categories.Find(id);
+
+            }
+
         }
 
 
@@ -27,19 +32,15 @@ namespace BulkyWebRazor.Pages.Categories
         {
             if (ModelState.IsValid)
             {
-
                 _db.Categories.Update(Category);  
                 _db.SaveChanges();
-
-            }else
-            {
-
-                return BadRequest();
+                return RedirectToPage("Index");
             }
+           
             
 
 
-            return RedirectToPage("Index");
+            return Page();
         }
     }
 }
