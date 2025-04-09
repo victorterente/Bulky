@@ -24,10 +24,7 @@ namespace BulkyWeb.Controllers
         public IActionResult Create() { 
             Category category = new Category();
             var Name = category.Name;
-            int DisplayOrder = category.DisplayOrder;
-
-
-            
+            int DisplayOrder = category.DisplayOrder; 
             return View();
         }
         [HttpPost]
